@@ -2,14 +2,12 @@ from djongo import models
 
 class User(models.Model):
     _id = models.ObjectIdField(primary_key=True)
-    # Remplacement de l'ancien champ id
-    id = None
     email = models.EmailField(unique=True)
-    name = models.CharField(max_length=255)
+    name = models.CharField(max_length=100)
 
 class Team(models.Model):
-    name = models.CharField(max_length=255)
-    members = models.ManyToManyField(User)
+    name = models.CharField(max_length=100)
+    members = models.ArrayReferenceField(to=User, on_delete=models.CASCADE)
 
 class Activity(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -22,5 +20,5 @@ class Leaderboard(models.Model):
 
 class Workout(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    type = models.CharField(max_length=255)
+    type = models.CharField(max_length=100)
     duration = models.IntegerField()
