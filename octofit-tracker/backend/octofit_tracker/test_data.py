@@ -1,33 +1,38 @@
-# Test data for octofit_db
+from bson import ObjectId
+from datetime import timedelta
 
-data = {
-    "users": [
-        {"email": "thundergod@mhigh.edu", "name": "Thor"},
-        {"email": "metalgeek@mhigh.edu", "name": "Tony Stark"},
-        {"email": "zerocool@mhigh.edu", "name": "Steve Rogers"},
-        {"email": "crashoverride@hmhigh.edu", "name": "Natasha Romanoff"},
-        {"email": "sleeptoken@mhigh.edu", "name": "Bruce Banner"},
-    ],
-    "teams": [
-        {"name": "Blue Team"},
-        {"name": "Gold Team"},
-    ],
-    "activities": [
-        {"user": "thundergod@mhigh.edu", "description": "Cycling", "date": "2025-04-29T10:00:00Z"},
-        {"user": "metalgeek@mhigh.edu", "description": "Crossfit", "date": "2025-04-29T11:00:00Z"},
-        {"user": "zerocool@mhigh.edu", "description": "Running", "date": "2025-04-29T12:00:00Z"},
-        {"user": "crashoverride@hmhigh.edu", "description": "Strength", "date": "2025-04-29T13:00:00Z"},
-        {"user": "sleeptoken@mhigh.edu", "description": "Swimming", "date": "2025-04-29T14:00:00Z"},
-    ],
-    "leaderboard": [
-        {"team": "Blue Team", "score": 100},
-        {"team": "Gold Team", "score": 90},
-    ],
-    "workouts": [
-        {"user": "thundergod@mhigh.edu", "type": "Cycling", "duration": 60},
-        {"user": "metalgeek@mhigh.edu", "type": "Crossfit", "duration": 120},
-        {"user": "zerocool@mhigh.edu", "type": "Running", "duration": 90},
-        {"user": "crashoverride@hmhigh.edu", "type": "Strength", "duration": 30},
-        {"user": "sleeptoken@mhigh.edu", "type": "Swimming", "duration": 75},
-    ],
-}
+def get_test_data():
+    return {
+        "users": [
+            {"_id": ObjectId(), "username": "thundergod", "email": "thundergod@mhigh.edu", "password": "thundergodpassword"},
+            {"_id": ObjectId(), "username": "metalgeek", "email": "metalgeek@mhigh.edu", "password": "metalgeekpassword"},
+            {"_id": ObjectId(), "username": "zerocool", "email": "zerocool@mhigh.edu", "password": "zerocoolpassword"},
+            {"_id": ObjectId(), "username": "crashoverride", "email": "crashoverride@mhigh.edu", "password": "crashoverridepassword"},
+            {"_id": ObjectId(), "username": "sleeptoken", "email": "sleeptoken@mhigh.edu", "password": "sleeptokenpassword"},
+        ],
+        "teams": [
+            {"_id": ObjectId(), "name": "Blue Team", "members": []},
+            {"_id": ObjectId(), "name": "Gold Team", "members": []},
+        ],
+        "activities": [
+            {"_id": ObjectId(), "user": None, "activity_type": "Cycling", "duration": timedelta(hours=1)},
+            {"_id": ObjectId(), "user": None, "activity_type": "Crossfit", "duration": timedelta(hours=2)},
+            {"_id": ObjectId(), "user": None, "activity_type": "Running", "duration": timedelta(hours=1, minutes=30)},
+            {"_id": ObjectId(), "user": None, "activity_type": "Strength", "duration": timedelta(minutes=30)},
+            {"_id": ObjectId(), "user": None, "activity_type": "Swimming", "duration": timedelta(hours=1, minutes=15)},
+        ],
+        "leaderboard": [
+            {"_id": ObjectId(), "user": None, "score": 100},
+            {"_id": ObjectId(), "user": None, "score": 90},
+            {"_id": ObjectId(), "user": None, "score": 95},
+            {"_id": ObjectId(), "user": None, "score": 85},
+            {"_id": ObjectId(), "user": None, "score": 80},
+        ],
+        "workouts": [
+            {"_id": ObjectId(), "name": "Cycling Training", "description": "Training for a road cycling event"},
+            {"_id": ObjectId(), "name": "Crossfit", "description": "Training for a crossfit competition"},
+            {"_id": ObjectId(), "name": "Running Training", "description": "Training for a marathon"},
+            {"_id": ObjectId(), "name": "Strength Training", "description": "Training for strength"},
+            {"_id": ObjectId(), "name": "Swimming Training", "description": "Training for a swimming competition"},
+        ],
+    }
